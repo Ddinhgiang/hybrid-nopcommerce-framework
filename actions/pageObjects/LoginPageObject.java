@@ -26,4 +26,9 @@ public class LoginPageObject extends BasePage {
         waitForELementClickable(driver, LoginPageUI.LOGIN_BUTTON);
         clickToELement(driver, LoginPageUI.LOGIN_BUTTON);
     }
+    public void loginToSystem(String emailAddress, String password) {
+        enterToEmailTextbox(emailAddress);
+        enterToPasswordTextbox(password);
+        clickToLoginButton();
+    }
 }
