@@ -14,115 +14,21 @@ import java.util.Set;
 public class BasePage {
 
 
-    public void openPageUrl(WebDriver driver, String url) {
-        driver.get(url);
-    }
 
-    public String getPageTitle(WebDriver driver) {
-        return driver.getTitle();
-    }
 
-    public String getPageUrl(WebDriver driver) {
-        return driver.getCurrentUrl();
-    }
-
-    public String getPageSourceCode(WebDriver driver) {
-        return driver.getPageSource();
-    }
-
-    public void backToPage(WebDriver driver) {
-        driver.navigate().back();
-    }
-
-    public void forwardToPage(WebDriver driver) {
-        driver.navigate().forward();
-    }
-
-    public void refreshCurrentPage(WebDriver driver) {
-        driver.navigate().refresh();
-    }
-
-    public Alert waitAlertPresence(WebDriver driver) {
-        return new WebDriverWait(driver, Duration.ofSeconds(15)).until(ExpectedConditions.alertIsPresent());
-    }
-
-    public void acceptToAlert(WebDriver driver) {
-        waitAlertPresence(driver).accept();
-    }
-
-    public void cancelToAlert(WebDriver driver) {
-        waitAlertPresence(driver).dismiss();
-    }
-
-    public String getAlertText(WebDriver driver) {
-        return waitAlertPresence(driver).getText();
-    }
-
-    public void sendKeyToAlert(WebDriver driver, String keysToSend) {
-        waitAlertPresence(driver).sendKeys(keysToSend);
-    }
-    private void switchToWindowByTitle(WebDriver driver, String expectedPageTitle) throws InterruptedException {
-        // Lấy hết toàn bộ ID của window/tab
-        Set <String> allWindowIds = driver.getWindowHandles();
-
-        //Dùng vòng lặp duyệt qua từng Id
-        for (String id:allWindowIds) {
-            //Mỗi lần duyệt sẽ cho nó switch vào trước
-            driver.switchTo().window(id);
-            Thread.sleep(2000);
-            String pageTitle = driver.getTitle();
-            //Kiem tra title
-            if (pageTitle.equals(expectedPageTitle)) {
-                break;
-            }
-        }
-    }
-
-    //Chỉ đúng với 2 window/tan
-    private void switchToWindowById(WebDriver driver, String windowId) {
-        //Lấy ra hết tất cả các ID của window/tab hiện tại
-        Set<String> allWindowIDs = driver.getWindowHandles();
-        //Dùng vòng lặp duyệt qua từng iD một
-        for(String id: allWindowIDs) {
-            //Dùng vòng lặp để duyệt qua từng ID một
-            if(!id.equals(windowId)) {
-                driver.switchTo().window(id);
-            }
-        }
-    }
-    private void closeAllWindowWithoutParent(WebDriver driver, String githubWindowId) throws InterruptedException {
-        Set <String> allWindowIds = driver.getWindowHandles();
-        for (String id:allWindowIds) {
-            if(!id.equals(githubWindowId)) {
-                driver.switchTo().window(id);
-                Thread.sleep(2000);
-                driver.close();
-            }
-        }
-
-    }
-    public WebElement getElement(WebDriver driver, String locator) {
-        return driver.findElement(By.xpath(locator));
-    }
-    public By getByXpath(String locator) {
-        return By.xpath(locator);
-    }
-    public List<WebElement> getListElement(WebDriver driver, String locator) {
-        return driver.findElements(By.xpath(locator));
-    }
-
-    public void clickToELement(WebDriver driver, String locator) {
+    public void clickToELement(WebElement element) {
 //        driver.findElement(By.xpath(locator)).click();
-        getElement(driver, locator).click();
+        element.click();
     }
-    public void sendKeyToElement(WebDriver driver, String locator, String keyToSend) {
-        getElement(driver, locator).sendKeys(keyToSend);
+    public void sendKeyToElement(WebElement element, String keyToSend) {
+        element.clear();
+        element.sendKeys(keyToSend);
     }
-    public void selectItemInDropdown(WebDriver driver, String locator, String textItem) {
-        new Select(  getElement(driver, locator)).selectByVisibleText(textItem);
+    public void selectItemInDropdown(WebElement element, String textItem) {
+        new Select(element).selectByVisibleText(textItem);
     }
-    public String getSelectedItemInDropdown(WebDriver driver, String locator) {
-        return new Select(driver.findElement(By.xpath(locator))).getFirstSelectedOption().getText();
+    public String getSelectedItemInDropdown(WebElement element) {
+        return new Select(element).getFirstSelectedOption().getText();
     }
     public boolean isDropdownMultiple(WebDriver driver, String locator) {
         return  new Select(driver.findElement(By.xpath(locator))).isMultiple();
