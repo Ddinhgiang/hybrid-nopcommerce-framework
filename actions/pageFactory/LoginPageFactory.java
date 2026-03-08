@@ -1,30 +1,41 @@
 package pageFactory;
 
-import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import pageUIs.LoginPageUI;
 
-public class LoginPageFactory extends BasePage {
+public class LoginPageFactory extends pageFactory.BasePageFactory {
     private WebDriver driver;
 
     public LoginPageFactory(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
+    @FindBy(xpath="//input[@id='Email']")
+    private WebElement emailTextbox;
+    @FindBy(id="Password")
+    private WebElement passwordTextbox;
+    @FindBy(xpath="//button[contains(@class,'login-button')]")
+    private WebElement loginButton;
+
 
     public void enterToEmailTextbox(String emailAddress) {
-        waitForELementVisible(driver, LoginPageUI.EMAIL_TEXTBOX);
-        sendKeyToElement(driver, LoginPageUI.EMAIL_TEXTBOX, emailAddress);
+        waitForElementVisibled(driver, emailTextbox);
+        sendKeyToElement(emailTextbox, emailAddress);
     }
 
     public void enterToPasswordTextbox(String password) {
-        waitForELementVisible(driver, LoginPageUI.PASSWORD_TEXTBOX);
-        sendKeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, password);
+        waitForElementVisibled(driver, passwordTextbox);
+        sendKeyToElement(passwordTextbox, password);
     }
 
 
     public void clickToLoginButton() {
-        waitForELementClickable(driver, LoginPageUI.LOGIN_BUTTON);
-        clickToELement(driver, LoginPageUI.LOGIN_BUTTON);
+        waitForElementClickable(driver, loginButton);
+        clickToELement(loginButton);
     }
     public void loginToSystem(String emailAddress, String password) {
         enterToEmailTextbox(emailAddress);

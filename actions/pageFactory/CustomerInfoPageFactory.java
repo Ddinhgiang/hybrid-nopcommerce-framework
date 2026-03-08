@@ -2,53 +2,78 @@ package pageFactory;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import pageUIs.CustomerInfoPageUI;
 
-public class CustomerInfoPageFactory extends BasePage {
+public class CustomerInfoPageFactory extends BasePageFactory {
     private WebDriver driver;
     public CustomerInfoPageFactory(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
+    @FindBy(id="gender-male")
+    private WebElement genderMaleRadio;
+
+    @FindBy(id="FirstName")
+    private WebElement firstNameTextbox;
+
+    @FindBy(id="LastName")
+    private WebElement lastNameTextbox;
+
+    @FindBy(id="Email")
+    private WebElement emailTextbox;
+
+    @FindBy(id="Company")
+    private WebElement companyTextbox;
+
+//    @FindBy(id="")
+//    private WebElement dayDropdown;
+//
+//    @FindBy(id="")
+//    private WebElement monthDropdown;
+//
+//    @FindBy(id="")
+//    private WebElement yearDropdown;
+
 
     public boolean isGenderMaleSelected() {
-        waitForELementSelected(driver, CustomerInfoPageUI.GENDER_MALE_RADIO);
-        return isElementSelected(driver, CustomerInfoPageUI.GENDER_MALE_RADIO);
+        waitForELementSelected(driver, genderMaleRadio);
+        return isElementSelected(genderMaleRadio);
     }
 
     public String getFirstNameTextboxValue() {
-        waitForELementVisible(driver, CustomerInfoPageUI.FIRST_NAME_TEXTBOX);
-        return getElementAttribute(driver, CustomerInfoPageUI.FIRST_NAME_TEXTBOX, "value");
+       waitForElementVisibled(driver, firstNameTextbox);
+        return getElementAttribute(firstNameTextbox, "value");
     }
     public String getLastNameTextboxValue() {
-        waitForELementVisible(driver, CustomerInfoPageUI.LAST_NAME_TEXTBOX);
-        return getElementAttribute(driver, CustomerInfoPageUI.LAST_NAME_TEXTBOX, "value");
+        waitForElementVisibled(driver, lastNameTextbox);
+        return getElementAttribute(lastNameTextbox, "value");
     }
 
-
     public String getEmailTextboxValue() {
-        waitForELementVisible(driver, CustomerInfoPageUI.EMAIL_TEXTBOX);
-        return getElementAttribute(driver, CustomerInfoPageUI.EMAIL_TEXTBOX, "value");
+        waitForElementVisibled(driver, emailTextbox);
+        return getElementAttribute(emailTextbox, "value");
     }
 
     public String getCompanyTextboxValue() {
-        waitForELementVisible(driver, CustomerInfoPageUI.COMPANY_TEXTBOX);
-        return getElementAttribute(driver, CustomerInfoPageUI.COMPANY_TEXTBOX, "value");
+       waitForElementVisibled(driver, companyTextbox);
+        return getElementAttribute(companyTextbox, "value");
 
     }
 
-
 //    public String getDayDropdownSelectedValue() {
-//        waitForELementClickable(driver, CustomerInfoPageUI.DAY_DROPDOWN);
-//        return getSelectedItemInDropdown(driver, CustomerInfoPageUI.DAY_DROPDOWN);
+//        waitForElementClickable(driver, dayDropdown);
+//        return getSelectedItemInDropdown(dayDropdown);
 //    }
 //
 //    public String getMonthDropdownSelectedValue() {
-//        waitForELementClickable(driver, CustomerInfoPageUI.MONTH_DROPDOWN);
-//        return getSelectedItemInDropdown(driver, CustomerInfoPageUI.MONTH_DROPDOWN);
+//       waitForElementClickable(driver, monthDropdown);
+//       return getSelectedItemInDropdown(monthDropdown);;
 //    }
-//
-//    public String getYearDropdownSelectedValue() {
-//        waitForELementClickable(driver, CustomerInfoPageUI.YEAR_DROPDOWN);
-//        return getSelectedItemInDropdown(driver, CustomerInfoPageUI.YEAR_DROPDOWN);
+    //    public String getYearDropdownSelectedValue() {
+//       waitForElementClickable(driver, yearDropdown);
+//       return getSelectedItemInDropdown(yearDropdown);;
 //    }
 }
