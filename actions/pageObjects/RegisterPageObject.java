@@ -66,9 +66,10 @@ public class RegisterPageObject extends BasePage {
         return getElementText(driver, RegisterPageUI.REGISTER_SUCCESS_MESSAGE);
     }
     /**Them**/
-    public void clickToMyAccountLink() {
+    public CustomerInfoPageObject openCustomerInfoPage() {
         waitForELementClickable(driver, RegisterPageUI.MY_ACCOUNT_LINK);
         clickToELement(driver, RegisterPageUI.MY_ACCOUNT_LINK);
+        return new CustomerInfoPageObject(driver);
     }
 
 //    public void clickToLoginLink() {

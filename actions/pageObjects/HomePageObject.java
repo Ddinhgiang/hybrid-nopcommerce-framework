@@ -13,14 +13,15 @@ public class HomePageObject extends BasePage {
     }
 
 
-    public void clickToRegisterLink() {
+    public RegisterPageObject openRegisterPage() {
         waitForELementClickable(driver, HomePageUI.REGISTER_LINK);
         clickToELement(driver, HomePageUI.REGISTER_LINK);
+        return new RegisterPageObject(driver);
     }
 
-    public void clickToLoginLink() {
-
-    }
+//    public HomePageObject clickToLoginLink() {
+//
+//    }
 
     public boolean isMyAccountLinkDisplayed() {
         waitForELementVisible(driver, HomePageUI.MY_ACCOUNT_LINK);

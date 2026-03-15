@@ -36,6 +36,11 @@ public class CustomerInfoPageObject extends BasePage {
 
     }
 
+    public AddressPageObject openAddressPage() {
+
+        return PageGenerator.getAddressPage(driver);
+    }
+
 
 //    public String getDayDropdownSelectedValue() {
 //        waitForELementClickable(driver, CustomerInfoPageUI.DAY_DROPDOWN);

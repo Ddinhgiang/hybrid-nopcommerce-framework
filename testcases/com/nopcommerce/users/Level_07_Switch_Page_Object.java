@@ -2,33 +2,30 @@ package com.nopcommerce.users;
 
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.CustomerInfoPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
-import java.time.Duration;
+import pageObjects.*;
 
-public class Level_03_Page_Object extends BaseTest {
+
+public class Level_07_Switch_Page_Object extends BaseTest {
    // Declare Variables
     private WebDriver driver;
     private HomePageObject homePage;
     private RegisterPageObject registerPage;
     private LoginPageObject loginPage;
     private CustomerInfoPageObject customerInfoPage;
+    private AddressPageObject addressPage;
+    private OrderPageObject orderPage;
+    private RewardPointPageObject rewardPointPage;
     private String firstName, lastName, day, month, year, emailAddress, companyName, password;
-
+    @Parameters("browser")
     //Pre-Condition
     @BeforeClass
-    public void beforeClass() {
-        driver = new ChromeDriver();
-        // Mo URL len >> Qua HomePage
-        driver.get("http://localhost:8086/");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    public void beforeClass(String browserName) {
+       driver=getBrowserDriver(browserName);
         //Page duoc sinh ra va bat dau lam nhung action cua page do
         homePage = new HomePageObject(driver);
         firstName = "rei";
@@ -44,10 +41,7 @@ public class Level_03_Page_Object extends BaseTest {
     @Test
     public void User_01_Register() {
         //Action 1
-        homePage.openRegisterPage();
-        //Tu Home Page qua Register Page
-        //Page duoc sinh ra va bat dau lam nhung action cua page do
-        registerPage = new RegisterPageObject(driver);
+        registerPage = homePage.openRegisterPage();
         registerPage.clickToMaleRadio();
         registerPage.enterToFirstNameTextbox(firstName);
         registerPage.enterToLastNameTextbox(lastName);
@@ -83,8 +77,8 @@ public class Level_03_Page_Object extends BaseTest {
         //Tu Home Page qua Customer Info Page
         //Page duoc sinh ra va bat dau nhung action cua no
 //        homePage.clickToMyAccountLink();
-        registerPage.openCustomerInfoPage();
-        customerInfoPage = new CustomerInfoPageObject(driver);
+        customerInfoPage = registerPage.openCustomerInfoPage();
+
         Assert.assertTrue(customerInfoPage.isGenderMaleSelected());
         Assert.assertEquals(customerInfoPage.getFirstNameTextboxValue(),firstName);
         Assert.assertEquals(customerInfoPage.getLastNameTextboxValue(),lastName);
@@ -93,7 +87,20 @@ public class Level_03_Page_Object extends BaseTest {
 //        Assert.assertEquals(customerInfoPage.getYearDropdownSelectedValue(),year);
         Assert.assertEquals(customerInfoPage.getEmailTextboxValue(),emailAddress);
         Assert.assertEquals(customerInfoPage.getCompanyTextboxValue(),companyName);
+    }
+    public void User_04_Switch_Page() {
+        //CustomerInfo -> Address
+        addressPage = customerInfoPage.openAddressPage();
+        //Address -> RewardPoint
+        rewardPointPage = addressPage.openRewardPointPage();
+        //RewardPoint -> Order
+        orderPage = rewardPointPage.openOrderPage();
 
+        //Order -> Address
+        addressPage = orderPage.openAddressPage();
+
+        //Address -> Customer Info
+        customerInfoPage = addressPage.openCustomerInfoPage();
 
     }
     @AfterClass

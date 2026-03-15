@@ -41,7 +41,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
     @Test
     public void User_01_Register() {
         //Action 1
-        homePage.clickToRegisterLink();
+        homePage.openRegisterPage();
         //Tu Home Page qua Register Page
         //Page duoc sinh ra va bat dau lam nhung action cua page do
         registerPage = new RegisterPageObject(driver);
@@ -80,7 +80,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
         //Tu Home Page qua Customer Info Page
         //Page duoc sinh ra va bat dau nhung action cua no
 //        homePage.clickToMyAccountLink();
-        registerPage.clickToMyAccountLink();
+        registerPage.openCustomerInfoPage();
         customerInfoPage = new CustomerInfoPageObject(driver);
         Assert.assertTrue(customerInfoPage.isGenderMaleSelected());
         Assert.assertEquals(customerInfoPage.getFirstNameTextboxValue(),firstName);
