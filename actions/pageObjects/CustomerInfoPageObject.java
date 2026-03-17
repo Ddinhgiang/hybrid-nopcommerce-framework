@@ -37,7 +37,8 @@ public class CustomerInfoPageObject extends BasePage {
     }
 
     public AddressPageObject openAddressPage() {
-
+        waitForELementClickable(driver, CustomerInfoPageUI.ADDRESS_LINK);
+        clickToELement(driver, CustomerInfoPageUI.ADDRESS_LINK);
         return PageGenerator.getAddressPage(driver);
     }
 

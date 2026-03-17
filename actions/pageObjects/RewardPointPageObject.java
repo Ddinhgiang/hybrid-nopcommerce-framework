@@ -2,6 +2,7 @@ package pageObjects;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageUIs.RewardPointPageUI;
 
 public class RewardPointPageObject extends BasePage {
     private WebDriver driver;
@@ -10,6 +11,8 @@ public class RewardPointPageObject extends BasePage {
     }
 
     public OrderPageObject openOrderPage() {
+        waitForELementClickable(driver, RewardPointPageUI.ORDER_LINK);
+        clickToELement(driver, RewardPointPageUI.ORDER_LINK);
         return PageGenerator.getOrderPage(driver);
     }
 }

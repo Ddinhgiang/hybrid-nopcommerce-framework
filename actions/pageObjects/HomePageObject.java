@@ -16,7 +16,7 @@ public class HomePageObject extends BasePage {
     public RegisterPageObject openRegisterPage() {
         waitForELementClickable(driver, HomePageUI.REGISTER_LINK);
         clickToELement(driver, HomePageUI.REGISTER_LINK);
-        return new RegisterPageObject(driver);
+        return PageGenerator.getRegisterPage(driver);
     }
 
 //    public HomePageObject clickToLoginLink() {
