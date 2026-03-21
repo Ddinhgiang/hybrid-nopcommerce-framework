@@ -1,4 +1,4 @@
 package pageUIs;
 
-public class RewardPointPageUI {
+public class RewardPointPageUI extends SidebarPageUI{
 }

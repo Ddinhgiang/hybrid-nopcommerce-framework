@@ -1,4 +1,4 @@
 package pageUIs;
 
-public class OrderPageUI {
+public class OrderPageUI extends SidebarPageUI{
 }

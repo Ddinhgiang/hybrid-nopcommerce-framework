@@ -1,5 +1,5 @@
 package pageUIs;
 
-public class AddressPageUI {
+public class AddressPageUI extends SidebarPageUI{
 
 }

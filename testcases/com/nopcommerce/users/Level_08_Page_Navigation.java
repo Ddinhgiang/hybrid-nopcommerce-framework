@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import pageObjects.*;
 
 
-public class Level_07_Switch_Page_Object extends BaseTest {
+public class Level_08_Page_Navigation extends BaseTest {
    // Declare Variables
     private WebDriver driver;
     private HomePageObject homePage;

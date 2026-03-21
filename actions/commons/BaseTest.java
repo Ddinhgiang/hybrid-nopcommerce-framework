@@ -24,7 +24,7 @@ public class BaseTest {
                 driver = new FirefoxDriver();
                 break;
             case CHROME:
-                System.setProperty("webdriver.chrome.driver", projectPath + File.separator + "browserDriver" + File.separator + "chromedriver.exe");
+                //System.setProperty("webdriver.chrome.driver", projectPath + File.separator + "browserDriver" + File.separator + "chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
             case EDGE:
@@ -35,6 +35,7 @@ public class BaseTest {
         }
         driver.get("http://localhost:8086/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().window().maximize();
         return driver;
     }
     public static void main(String[]args) {

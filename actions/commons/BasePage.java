@@ -310,27 +310,4 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
     }
 
-    public AddressPageObject openAddressPage(WebDriver driver) {
-        waitForELementClickable(driver, BasePageUI.ADDRESS_LINK);
-        clickToELement(driver, BasePageUI.ADDRESS_LINK);
-        return PageGenerator.getAddressPage(driver);
-    }
-    public RewardPointPageObject openRewardPointPage(WebDriver driver) {
-        waitForELementClickable(driver, BasePageUI.REWARD_POINT_LINK);
-        clickToELement(driver, BasePageUI.REWARD_POINT_LINK);
-        return PageGenerator.getRewardPage(driver);
-    }
-
-    public CustomerInfoPageObject openCustomerInfoPage(WebDriver driver) {
-        waitForELementClickable(driver, BasePageUI.CUSTOMER_INFO_LINK);
-        clickToELement(driver, BasePageUI.CUSTOMER_INFO_LINK);
-        return PageGenerator.getCustomerPage(driver);
-    }
-    public OrderPageObject openOrderPage(WebDriver driver) {
-        waitForELementClickable(driver, BasePageUI.ORDER_LINK);
-        clickToELement(driver, BasePageUI.ORDER_LINK);
-        return PageGenerator.getOrderPage(driver);
-    }
-
-
 }
