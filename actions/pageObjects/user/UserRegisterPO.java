@@ -1,13 +1,13 @@
-package pageObjects;
+package pageObjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 import pageUIs.RegisterPageUI;
 
-public class RegisterPageObject extends BasePage {
+public class UserRegisterPO extends BasePage {
     private WebDriver driver;
 
-    public RegisterPageObject(WebDriver driver) {
+    public UserRegisterPO(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -66,10 +66,10 @@ public class RegisterPageObject extends BasePage {
         return getElementText(driver, RegisterPageUI.REGISTER_SUCCESS_MESSAGE);
     }
     /**Them**/
-    public CustomerInfoPageObject openCustomerInfoPage() {
+    public UserCustomerInfoPO openCustomerInfoPage() {
         waitForELementClickable(driver, RegisterPageUI.MY_ACCOUNT_LINK);
         clickToELement(driver, RegisterPageUI.MY_ACCOUNT_LINK);
-        return new CustomerInfoPageObject(driver);
+        return new UserCustomerInfoPO(driver);
     }
 
 //    public void clickToLoginLink() {

@@ -38,6 +38,27 @@ public class BaseTest {
         driver.manage().window().maximize();
         return driver;
     }
+    protected WebDriver getBrowserDriver(String browserName, String url) {
+        BrowserList browserList=BrowserList.valueOf(browserName.toUpperCase());
+        switch (browserList) {
+            case FIREFOX:
+                driver = new FirefoxDriver();
+                break;
+            case CHROME:
+                //System.setProperty("webdriver.chrome.driver", projectPath + File.separator + "browserDriver" + File.separator + "chromedriver.exe");
+                driver = new ChromeDriver();
+                break;
+            case EDGE:
+                driver = new EdgeDriver();
+                break;
+            default:
+                throw new RuntimeException("Browser name is not valid");
+        }
+        driver.get(url);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().window().maximize();
+        return driver;
+    }
     public static void main(String[]args) {
         System.out.println(projectPath + File.separator + "browserDriver" + File.separator + "chromedriver.exe");
     }

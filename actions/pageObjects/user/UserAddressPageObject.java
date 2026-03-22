@@ -1,27 +1,26 @@
-package pageObjects;
+package pageObjects.user;
 
-import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageObjects.PageGenerator;
 import pageUIs.AddressPageUI;
-import pageUIs.CustomerInfoPageUI;
 
-public class AddressPageObject extends SidebarPageObject {
+public class UserAddressPageObject extends UserSidebarPO {
     private WebDriver driver;
 
-    public AddressPageObject(WebDriver driver) {
+    public UserAddressPageObject(WebDriver driver) {
         super(driver);
         this.driver = driver;
     }
 
-    public RewardPointPageObject openRewardPointPage() {
+    public UserRewardPointPO openRewardPointPage() {
         waitForELementClickable(driver, AddressPageUI.REWARD_POINT_LINK);
         clickToELement(driver, AddressPageUI.REWARD_POINT_LINK);
-        return PageGenerator.getRewardPage(driver);
+        return PageGenerator.getUserRewardPage(driver);
     }
 
-    public CustomerInfoPageObject openCustomerInfoPage() {
+    public UserCustomerInfoPO openCustomerInfoPage() {
         waitForELementClickable(driver, AddressPageUI.CUSTOMER_INFO_LINK);
         clickToELement(driver, AddressPageUI.CUSTOMER_INFO_LINK);
-        return PageGenerator.getCustomerPage(driver);
+        return PageGenerator.getUserCustomerPage(driver);
     }
 }

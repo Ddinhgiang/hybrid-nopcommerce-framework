@@ -7,19 +7,19 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.CustomerInfoPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.user.UserCustomerInfoPO;
+import pageObjects.user.UserHomePO;
+import pageObjects.user.UserLoginPO;
+import pageObjects.user.UserRegisterPO;
 
 
 public class Level_04_Multiple_Browser extends BaseTest {
    // Declare Variables
     private WebDriver driver;
-    private HomePageObject homePage;
-    private RegisterPageObject registerPage;
-    private LoginPageObject loginPage;
-    private CustomerInfoPageObject customerInfoPage;
+    private UserHomePO homePage;
+    private UserRegisterPO registerPage;
+    private UserLoginPO loginPage;
+    private UserCustomerInfoPO customerInfoPage;
     private String firstName, lastName, day, month, year, emailAddress, companyName, password;
     @Parameters("browser")
     //Pre-Condition
@@ -27,7 +27,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
     public void beforeClass(String browserName) {
        driver=getBrowserDriver(browserName);
         //Page duoc sinh ra va bat dau lam nhung action cua page do
-        homePage = new HomePageObject(driver);
+        homePage = new UserHomePO(driver);
         firstName = "rei";
         lastName = "conan";
 //        day = "";
@@ -44,7 +44,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
         homePage.openRegisterPage();
         //Tu Home Page qua Register Page
         //Page duoc sinh ra va bat dau lam nhung action cua page do
-        registerPage = new RegisterPageObject(driver);
+        registerPage = new UserRegisterPO(driver);
         registerPage.clickToMaleRadio();
         registerPage.enterToFirstNameTextbox(firstName);
         registerPage.enterToLastNameTextbox(lastName);
@@ -81,7 +81,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
         //Page duoc sinh ra va bat dau nhung action cua no
 //        homePage.clickToMyAccountLink();
         registerPage.openCustomerInfoPage();
-        customerInfoPage = new CustomerInfoPageObject(driver);
+        customerInfoPage = new UserCustomerInfoPO(driver);
         Assert.assertTrue(customerInfoPage.isGenderMaleSelected());
         Assert.assertEquals(customerInfoPage.getFirstNameTextboxValue(),firstName);
         Assert.assertEquals(customerInfoPage.getLastNameTextboxValue(),lastName);

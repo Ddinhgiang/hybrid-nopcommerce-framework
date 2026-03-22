@@ -1,36 +1,36 @@
-package pageObjects;
+package pageObjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.BasePageUI;
+import pageObjects.PageGenerator;
 import pageUIs.SidebarPageUI;
 
-public class SidebarPageObject extends BasePage {
+public class UserSidebarPO extends BasePage {
     private WebDriver driver;
 
-    public SidebarPageObject(WebDriver driver) {
+    public UserSidebarPO(WebDriver driver) {
         this.driver = driver;
     }
-    public AddressPageObject openAddressPage() {
+    public UserAddressPageObject openAddressPage() {
         waitForELementClickable(driver, SidebarPageUI.ADDRESS_LINK);
         clickToELement(driver, SidebarPageUI.ADDRESS_LINK);
-        return PageGenerator.getAddressPage(driver);
+        return PageGenerator.getUserAddressPage(driver);
     }
-    public RewardPointPageObject openRewardPointPage() {
+    public UserRewardPointPO openRewardPointPage() {
         waitForELementClickable(driver, SidebarPageUI.REWARD_POINT_LINK);
         clickToELement(driver, SidebarPageUI.REWARD_POINT_LINK);
-        return PageGenerator.getRewardPage(driver);
+        return PageGenerator.getUserRewardPage(driver);
     }
 
-    public CustomerInfoPageObject openCustomerInfoPage() {
+    public UserCustomerInfoPO openCustomerInfoPage() {
         waitForELementClickable(driver, SidebarPageUI.CUSTOMER_INFO_LINK);
         clickToELement(driver, SidebarPageUI.CUSTOMER_INFO_LINK);
-        return PageGenerator.getCustomerPage(driver);
+        return PageGenerator.getUserCustomerPage(driver);
     }
-    public OrderPageObject openOrderPage() {
+    public UserOrderPO openOrderPage() {
         waitForELementClickable(driver, SidebarPageUI.ORDER_LINK);
         clickToELement(driver, SidebarPageUI.ORDER_LINK);
-        return PageGenerator.getOrderPage(driver);
+        return PageGenerator.getUserOrderPage(driver);
     }
 
 

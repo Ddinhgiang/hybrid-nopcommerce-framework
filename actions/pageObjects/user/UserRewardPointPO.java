@@ -1,19 +1,19 @@
-package pageObjects;
+package pageObjects.user;
 
-import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageObjects.PageGenerator;
 import pageUIs.RewardPointPageUI;
 
-public class RewardPointPageObject extends SidebarPageObject {
+public class UserRewardPointPO extends UserSidebarPO {
     private WebDriver driver;
-    public RewardPointPageObject(WebDriver driver) {
+    public UserRewardPointPO(WebDriver driver) {
         super(driver);
         this.driver = driver;
     }
 
-    public OrderPageObject openOrderPage() {
+    public UserOrderPO openOrderPage() {
         waitForELementClickable(driver, RewardPointPageUI.ORDER_LINK);
         clickToELement(driver, RewardPointPageUI.ORDER_LINK);
-        return PageGenerator.getOrderPage(driver);
+        return PageGenerator.getUserOrderPage(driver);
     }
 }

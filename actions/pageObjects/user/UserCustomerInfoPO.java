@@ -1,12 +1,12 @@
-package pageObjects;
+package pageObjects.user;
 
-import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageObjects.PageGenerator;
 import pageUIs.CustomerInfoPageUI;
 
-public class CustomerInfoPageObject extends SidebarPageObject {
+public class UserCustomerInfoPO extends UserSidebarPO {
     private WebDriver driver;
-    public CustomerInfoPageObject(WebDriver driver) {
+    public UserCustomerInfoPO(WebDriver driver) {
         super(driver);
         this.driver = driver;
     }
@@ -37,10 +37,10 @@ public class CustomerInfoPageObject extends SidebarPageObject {
 
     }
 
-    public AddressPageObject openAddressPage() {
+    public UserAddressPageObject openAddressPage() {
         waitForELementClickable(driver, CustomerInfoPageUI.ADDRESS_LINK);
         clickToELement(driver, CustomerInfoPageUI.ADDRESS_LINK);
-        return PageGenerator.getAddressPage(driver);
+        return PageGenerator.getUserAddressPage(driver);
     }
 
 

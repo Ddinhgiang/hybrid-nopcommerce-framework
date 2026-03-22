@@ -1,28 +1,34 @@
 package pageObjects;
 
-import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageObjects.user.UserAddressPageObject;
+import pageObjects.user.UserCustomerInfoPO;
+import pageObjects.user.UserOrderPO;
+import pageObjects.user.UserRewardPointPO;
+import pageObjects.user.UserHomePO;
+import pageObjects.user.UserLoginPO;
+import pageObjects.user.UserRegisterPO;
 
 public class PageGenerator{
-    public static HomePageObject getHomePage(WebDriver driver) {
-        return new HomePageObject(driver);
+    public static UserHomePO getUserHomePage(WebDriver driver) {
+        return new UserHomePO(driver);
     }
-    public static LoginPageObject getLoginPage(WebDriver driver) {
-        return new LoginPageObject(driver);
+    public static UserLoginPO getUserLoginPage(WebDriver driver) {
+        return new UserLoginPO(driver);
     }
-    public static RegisterPageObject getRegisterPage(WebDriver driver) {
-        return new RegisterPageObject(driver);
+    public static UserRegisterPO getUserRegisterPage(WebDriver driver) {
+        return new UserRegisterPO(driver);
     }
-    public static CustomerInfoPageObject getCustomerPage(WebDriver driver) {
-        return new CustomerInfoPageObject(driver);
+    public static UserCustomerInfoPO getUserCustomerPage(WebDriver driver) {
+        return new UserCustomerInfoPO(driver);
     }
-    public static OrderPageObject getOrderPage(WebDriver driver) {
-        return new OrderPageObject(driver);
+    public static UserOrderPO getUserOrderPage(WebDriver driver) {
+        return new UserOrderPO(driver);
     }
-    public static AddressPageObject getAddressPage(WebDriver driver) {
-        return new AddressPageObject(driver);
+    public static UserAddressPageObject getUserAddressPage(WebDriver driver) {
+        return new UserAddressPageObject(driver);
     }
-    public static RewardPointPageObject getRewardPage(WebDriver driver) {
-        return new RewardPointPageObject(driver);
+    public static UserRewardPointPO getUserRewardPage(WebDriver driver) {
+        return new UserRewardPointPO(driver);
     }
 }
