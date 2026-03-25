@@ -2,7 +2,7 @@ package pageObjects.user;
 
 import org.openqa.selenium.WebDriver;
 import pageObjects.PageGenerator;
-import pageUIs.AddressPageUI;
+import pageUIs.user.UserAddressPageUI;
 
 public class UserAddressPageObject extends UserSidebarPO {
     private WebDriver driver;
@@ -13,14 +13,14 @@ public class UserAddressPageObject extends UserSidebarPO {
     }
 
     public UserRewardPointPO openRewardPointPage() {
-        waitForELementClickable(driver, AddressPageUI.REWARD_POINT_LINK);
-        clickToELement(driver, AddressPageUI.REWARD_POINT_LINK);
+        waitForELementClickable(driver, UserAddressPageUI.REWARD_POINT_LINK);
+        clickToELement(driver, UserAddressPageUI.REWARD_POINT_LINK);
         return PageGenerator.getUserRewardPage(driver);
     }
 
     public UserCustomerInfoPO openCustomerInfoPage() {
-        waitForELementClickable(driver, AddressPageUI.CUSTOMER_INFO_LINK);
-        clickToELement(driver, AddressPageUI.CUSTOMER_INFO_LINK);
+        waitForELementClickable(driver, UserAddressPageUI.CUSTOMER_INFO_LINK);
+        clickToELement(driver, UserAddressPageUI.CUSTOMER_INFO_LINK);
         return PageGenerator.getUserCustomerPage(driver);
     }
 }

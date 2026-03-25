@@ -8,6 +8,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.*;
+import pageObjects.admin.AdminDashboardPO;
+import pageObjects.admin.AdminLoginPO;
 import pageObjects.user.UserAddressPageObject;
 import pageObjects.user.UserCustomerInfoPO;
 import pageObjects.user.UserOrderPO;
@@ -18,13 +20,7 @@ import pageObjects.user.UserRegisterPO;
 
 
 public class Level_09_Switch_Page_Url extends BaseTest {
-   // Declare Variables
-    private String userUrl, adminUrl;
-    private WebDriver driver;
-    private UserHomePO userHomePage;
-    private UserRegisterPO userRegisterPage;
-    private UserLoginPO userLoginPage;
-    private String firstName, lastName, day, month, year, emailAddress, companyName, password;
+
     @Parameters({"browser", "userUrl", "adminUrl"})
     //Pre-Condition
     @BeforeClass
@@ -57,6 +53,16 @@ public class Level_09_Switch_Page_Url extends BaseTest {
     //Testcase
     @Test
     public void Role_01_User_Site_To_Admin_Site() {
+        userHomePage = userLoginPage.loginToSystem(emailAddress, password);
+        Assert.assertTrue(userHomePage.isMyAccountLinkDisplayed());
+        userHomePage.openPageUrl(driver, this.adminUrl);
+        //Chua login >> Khoi tao Login
+        adminLoginPage = PageGenerator.getAdminLoginPage(driver);
+
+        //Login vao trang Admin
+        adminLoginPage.enterToEmailTextbox("");
+        adminLoginPage.enterToPasswordTextbox("");
+        adminDashboardPage = adminLoginPage.clickToLoginButton();
 
     }
     @Test
@@ -75,5 +81,13 @@ public class Level_09_Switch_Page_Url extends BaseTest {
     public void afterClass() {
         driver.quit();
     }
-    //Post-condition
+    private String userUrl, adminUrl;
+    private WebDriver driver;
+    private UserHomePO userHomePage;
+    private UserRegisterPO userRegisterPage;
+    private UserLoginPO userLoginPage;
+    private AdminLoginPO adminLoginPage;
+    private AdminDashboardPO adminDashboardPage;
+    private String firstName, lastName, day, month, year, emailAddress, companyName, password;
+
 }

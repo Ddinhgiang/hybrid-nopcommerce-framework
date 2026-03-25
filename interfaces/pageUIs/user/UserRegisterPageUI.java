@@ -1,6 +1,8 @@
-package pageUIs;
+package pageUIs.user;
 
-public class RegisterPageUI extends BasePageUI {
+import pageUIs.BasePageUI;
+
+public class UserRegisterPageUI extends BasePageUI {
     public static final String GENDER_MALE_RADIO = "//input[@id='gender-male']";
     public static final String FIRST_NAME_TEXTBOX= "//input[@id='FirstName']";
     public static final String LAST_NAME_TEXTBOX= "//input[@id='LastName']";

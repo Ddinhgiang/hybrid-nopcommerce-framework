@@ -2,7 +2,7 @@ package pageObjects.user;
 
 import org.openqa.selenium.WebDriver;
 import pageObjects.PageGenerator;
-import pageUIs.OrderPageUI;
+import pageUIs.user.UserOrderPageUI;
 
 public class UserOrderPO extends UserSidebarPO {
     private WebDriver driver;
@@ -12,8 +12,8 @@ public class UserOrderPO extends UserSidebarPO {
     }
 
     public UserAddressPageObject openAddressPage() {
-        waitForELementClickable(driver, OrderPageUI.ADDRESS_LINK);
-        clickToELement(driver, OrderPageUI.ADDRESS_LINK);
+        waitForELementClickable(driver, UserOrderPageUI.ADDRESS_LINK);
+        clickToELement(driver, UserOrderPageUI.ADDRESS_LINK);
         return PageGenerator.getUserAddressPage(driver);
     }
 }

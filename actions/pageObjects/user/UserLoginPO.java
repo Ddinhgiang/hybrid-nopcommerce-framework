@@ -2,7 +2,7 @@ package pageObjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.LoginPageUI;
+import pageUIs.user.UserLoginPageUI;
 
 public class UserLoginPO extends BasePage {
     private WebDriver driver;
@@ -12,23 +12,24 @@ public class UserLoginPO extends BasePage {
     }
 
     public void enterToEmailTextbox(String emailAddress) {
-        waitForELementVisible(driver, LoginPageUI.EMAIL_TEXTBOX);
-        sendKeyToElement(driver, LoginPageUI.EMAIL_TEXTBOX, emailAddress);
+        waitForELementVisible(driver, UserLoginPageUI.EMAIL_TEXTBOX);
+        sendKeyToElement(driver, UserLoginPageUI.EMAIL_TEXTBOX, emailAddress);
     }
 
     public void enterToPasswordTextbox(String password) {
-        waitForELementVisible(driver, LoginPageUI.PASSWORD_TEXTBOX);
-        sendKeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, password);
+        waitForELementVisible(driver, UserLoginPageUI.PASSWORD_TEXTBOX);
+        sendKeyToElement(driver, UserLoginPageUI.PASSWORD_TEXTBOX, password);
     }
 
 
     public void clickToLoginButton() {
-        waitForELementClickable(driver, LoginPageUI.LOGIN_BUTTON);
-        clickToELement(driver, LoginPageUI.LOGIN_BUTTON);
+        waitForELementClickable(driver, UserLoginPageUI.LOGIN_BUTTON);
+        clickToELement(driver, UserLoginPageUI.LOGIN_BUTTON);
     }
-    public void loginToSystem(String emailAddress, String password) {
+    public UserHomePO loginToSystem(String emailAddress, String password) {
         enterToEmailTextbox(emailAddress);
         enterToPasswordTextbox(password);
         clickToLoginButton();
+        return new UserHomePO(driver);
     }
 }

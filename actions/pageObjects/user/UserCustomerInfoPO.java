@@ -2,7 +2,7 @@ package pageObjects.user;
 
 import org.openqa.selenium.WebDriver;
 import pageObjects.PageGenerator;
-import pageUIs.CustomerInfoPageUI;
+import pageUIs.user.UserCustomerInfoPageUI;
 
 public class UserCustomerInfoPO extends UserSidebarPO {
     private WebDriver driver;
@@ -12,34 +12,34 @@ public class UserCustomerInfoPO extends UserSidebarPO {
     }
 
     public boolean isGenderMaleSelected() {
-        waitForELementSelected(driver, CustomerInfoPageUI.GENDER_MALE_RADIO);
-        return isElementSelected(driver, CustomerInfoPageUI.GENDER_MALE_RADIO);
+        waitForELementSelected(driver, UserCustomerInfoPageUI.GENDER_MALE_RADIO);
+        return isElementSelected(driver, UserCustomerInfoPageUI.GENDER_MALE_RADIO);
     }
 
     public String getFirstNameTextboxValue() {
-        waitForELementVisible(driver, CustomerInfoPageUI.FIRST_NAME_TEXTBOX);
-        return getElementAttribute(driver, CustomerInfoPageUI.FIRST_NAME_TEXTBOX, "value");
+        waitForELementVisible(driver, UserCustomerInfoPageUI.FIRST_NAME_TEXTBOX);
+        return getElementAttribute(driver, UserCustomerInfoPageUI.FIRST_NAME_TEXTBOX, "value");
     }
     public String getLastNameTextboxValue() {
-        waitForELementVisible(driver, CustomerInfoPageUI.LAST_NAME_TEXTBOX);
-        return getElementAttribute(driver, CustomerInfoPageUI.LAST_NAME_TEXTBOX, "value");
+        waitForELementVisible(driver, UserCustomerInfoPageUI.LAST_NAME_TEXTBOX);
+        return getElementAttribute(driver, UserCustomerInfoPageUI.LAST_NAME_TEXTBOX, "value");
     }
 
 
     public String getEmailTextboxValue() {
-        waitForELementVisible(driver, CustomerInfoPageUI.EMAIL_TEXTBOX);
-        return getElementAttribute(driver, CustomerInfoPageUI.EMAIL_TEXTBOX, "value");
+        waitForELementVisible(driver, UserCustomerInfoPageUI.EMAIL_TEXTBOX);
+        return getElementAttribute(driver, UserCustomerInfoPageUI.EMAIL_TEXTBOX, "value");
     }
 
     public String getCompanyTextboxValue() {
-        waitForELementVisible(driver, CustomerInfoPageUI.COMPANY_TEXTBOX);
-        return getElementAttribute(driver, CustomerInfoPageUI.COMPANY_TEXTBOX, "value");
+        waitForELementVisible(driver, UserCustomerInfoPageUI.COMPANY_TEXTBOX);
+        return getElementAttribute(driver, UserCustomerInfoPageUI.COMPANY_TEXTBOX, "value");
 
     }
 
     public UserAddressPageObject openAddressPage() {
-        waitForELementClickable(driver, CustomerInfoPageUI.ADDRESS_LINK);
-        clickToELement(driver, CustomerInfoPageUI.ADDRESS_LINK);
+        waitForELementClickable(driver, UserCustomerInfoPageUI.ADDRESS_LINK);
+        clickToELement(driver, UserCustomerInfoPageUI.ADDRESS_LINK);
         return PageGenerator.getUserAddressPage(driver);
     }
 

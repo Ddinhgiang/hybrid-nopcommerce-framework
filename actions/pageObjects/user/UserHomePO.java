@@ -3,7 +3,7 @@ package pageObjects.user;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 import pageObjects.PageGenerator;
-import pageUIs.HomePageUI;
+import pageUIs.user.UserHomePageUI;
 
 public class UserHomePO extends BasePage {
 
@@ -15,8 +15,8 @@ public class UserHomePO extends BasePage {
 
 
     public UserRegisterPO openRegisterPage() {
-        waitForELementClickable(driver, HomePageUI.REGISTER_LINK);
-        clickToELement(driver, HomePageUI.REGISTER_LINK);
+        waitForELementClickable(driver, UserHomePageUI.REGISTER_LINK);
+        clickToELement(driver, UserHomePageUI.REGISTER_LINK);
         return PageGenerator.getUserRegisterPage(driver);
     }
 
@@ -25,12 +25,12 @@ public class UserHomePO extends BasePage {
 //    }
 
     public boolean isMyAccountLinkDisplayed() {
-        waitForELementVisible(driver, HomePageUI.MY_ACCOUNT_LINK);
-        return isElementDisplayed(driver, HomePageUI.MY_ACCOUNT_LINK);
+        waitForELementVisible(driver, UserHomePageUI.MY_ACCOUNT_LINK);
+        return isElementDisplayed(driver, UserHomePageUI.MY_ACCOUNT_LINK);
     }
 
     public void clickToMyAccountLink() {
-        waitForELementClickable(driver, HomePageUI.MY_ACCOUNT_LINK);
-        clickToELement(driver, HomePageUI.MY_ACCOUNT_LINK);
+        waitForELementClickable(driver, UserHomePageUI.MY_ACCOUNT_LINK);
+        clickToELement(driver, UserHomePageUI.MY_ACCOUNT_LINK);
     }
 }

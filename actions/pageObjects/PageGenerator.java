@@ -1,6 +1,8 @@
 package pageObjects;
 
 import org.openqa.selenium.WebDriver;
+import pageObjects.admin.AdminDashboardPO;
+import pageObjects.admin.AdminLoginPO;
 import pageObjects.user.UserAddressPageObject;
 import pageObjects.user.UserCustomerInfoPO;
 import pageObjects.user.UserOrderPO;
@@ -30,5 +32,11 @@ public class PageGenerator{
     }
     public static UserRewardPointPO getUserRewardPage(WebDriver driver) {
         return new UserRewardPointPO(driver);
+    }
+    public static AdminLoginPO getAdminLoginPage(WebDriver driver) {
+        return new AdminLoginPO(driver);
+    }
+    public static AdminDashboardPO getAdminDashboardPage(WebDriver driver) {
+        return new AdminDashboardPO(driver);
     }
 }

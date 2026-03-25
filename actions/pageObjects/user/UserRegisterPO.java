@@ -2,7 +2,7 @@ package pageObjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.RegisterPageUI;
+import pageUIs.user.UserRegisterPageUI;
 
 public class UserRegisterPO extends BasePage {
     private WebDriver driver;
@@ -12,17 +12,17 @@ public class UserRegisterPO extends BasePage {
     }
 
     public void clickToMaleRadio() {
-        waitForELementClickable(driver, RegisterPageUI.GENDER_MALE_RADIO);
-        checkToCheckboxRadio(driver, RegisterPageUI.GENDER_MALE_RADIO);
+        waitForELementClickable(driver, UserRegisterPageUI.GENDER_MALE_RADIO);
+        checkToCheckboxRadio(driver, UserRegisterPageUI.GENDER_MALE_RADIO);
     }
 
     public void enterToFirstNameTextbox(String firstName) {
-        waitForELementVisible(driver, RegisterPageUI.FIRST_NAME_TEXTBOX);
-        sendKeyToElement(driver, RegisterPageUI.FIRST_NAME_TEXTBOX, firstName);
+        waitForELementVisible(driver, UserRegisterPageUI.FIRST_NAME_TEXTBOX);
+        sendKeyToElement(driver, UserRegisterPageUI.FIRST_NAME_TEXTBOX, firstName);
     }
     public void enterToLastNameTextbox(String lastName) {
-        waitForELementVisible(driver, RegisterPageUI.LAST_NAME_TEXTBOX);
-        sendKeyToElement(driver, RegisterPageUI.LAST_NAME_TEXTBOX, lastName);
+        waitForELementVisible(driver, UserRegisterPageUI.LAST_NAME_TEXTBOX);
+        sendKeyToElement(driver, UserRegisterPageUI.LAST_NAME_TEXTBOX, lastName);
     }
 //    public void selectDayDropdown(String day) {
 //        waitForELementClickable(driver, RegisterPageUI.DAY_DROPDOWN);
@@ -39,36 +39,36 @@ public class UserRegisterPO extends BasePage {
 //        selectItemInDropdown(driver, RegisterPageUI.YEAR_DROPDOWN, year);
 //    }
     public void enterToEmailTextbox(String emailAddress) {
-        waitForELementVisible(driver, RegisterPageUI.EMAIL_TEXTBOX);
-        sendKeyToElement(driver, RegisterPageUI.EMAIL_TEXTBOX, emailAddress);
+        waitForELementVisible(driver, UserRegisterPageUI.EMAIL_TEXTBOX);
+        sendKeyToElement(driver, UserRegisterPageUI.EMAIL_TEXTBOX, emailAddress);
     }
 
 
     public void enterToPasswordTextbox(String password) {
-        waitForELementVisible(driver, RegisterPageUI.PASSWORD_TEXTBOX);
-        sendKeyToElement(driver, RegisterPageUI.PASSWORD_TEXTBOX, password);
+        waitForELementVisible(driver, UserRegisterPageUI.PASSWORD_TEXTBOX);
+        sendKeyToElement(driver, UserRegisterPageUI.PASSWORD_TEXTBOX, password);
     }
 
     public void enterToConfirmPasswordTextbox(String password) {
-        waitForELementVisible(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX);
-        sendKeyToElement(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX, password);
+        waitForELementVisible(driver, UserRegisterPageUI.CONFIRM_PASSWORD_TEXTBOX);
+        sendKeyToElement(driver, UserRegisterPageUI.CONFIRM_PASSWORD_TEXTBOX, password);
     }
     public void enterToCompanyTextbox(String companyName) {
-        waitForELementVisible(driver, RegisterPageUI.COMPANY_TEXTBOX);
-        sendKeyToElement(driver, RegisterPageUI.COMPANY_TEXTBOX, companyName);
+        waitForELementVisible(driver, UserRegisterPageUI.COMPANY_TEXTBOX);
+        sendKeyToElement(driver, UserRegisterPageUI.COMPANY_TEXTBOX, companyName);
     }
     public void clickToRegisterButton() {
-        waitForELementClickable(driver, RegisterPageUI.REGISTER_BUTTON);
-        clickToELement(driver, RegisterPageUI.REGISTER_BUTTON);
+        waitForELementClickable(driver, UserRegisterPageUI.REGISTER_BUTTON);
+        clickToELement(driver, UserRegisterPageUI.REGISTER_BUTTON);
     }
     public String getRegisterSuccessMessage() {
-        waitForELementVisible(driver, RegisterPageUI.REGISTER_SUCCESS_MESSAGE);
-        return getElementText(driver, RegisterPageUI.REGISTER_SUCCESS_MESSAGE);
+        waitForELementVisible(driver, UserRegisterPageUI.REGISTER_SUCCESS_MESSAGE);
+        return getElementText(driver, UserRegisterPageUI.REGISTER_SUCCESS_MESSAGE);
     }
     /**Them**/
     public UserCustomerInfoPO openCustomerInfoPage() {
-        waitForELementClickable(driver, RegisterPageUI.MY_ACCOUNT_LINK);
-        clickToELement(driver, RegisterPageUI.MY_ACCOUNT_LINK);
+        waitForELementClickable(driver, UserRegisterPageUI.MY_ACCOUNT_LINK);
+        clickToELement(driver, UserRegisterPageUI.MY_ACCOUNT_LINK);
         return new UserCustomerInfoPO(driver);
     }
 
