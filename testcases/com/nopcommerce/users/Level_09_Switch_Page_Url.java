@@ -38,6 +38,8 @@ public class Level_09_Switch_Page_Url extends BaseTest {
         emailAddress = "reiconan" + generateRandomNumber()  + "@gmail.com";
         companyName = "rei";
         password = "123123";
+        adminEmaillAddress = "admin@yourstore.com";
+        adminPassword="admin";
 
         userRegisterPage = userHomePage.openRegisterPage();
         userRegisterPage.clickToMaleRadio();
@@ -53,6 +55,7 @@ public class Level_09_Switch_Page_Url extends BaseTest {
     //Testcase
     @Test
     public void Role_01_User_Site_To_Admin_Site() {
+//        userLoginPage = userRegisterPage.openLoginPage();
         userHomePage = userLoginPage.loginToSystem(emailAddress, password);
         Assert.assertTrue(userHomePage.isMyAccountLinkDisplayed());
         userHomePage.openPageUrl(driver, this.adminUrl);
@@ -60,13 +63,18 @@ public class Level_09_Switch_Page_Url extends BaseTest {
         adminLoginPage = PageGenerator.getAdminLoginPage(driver);
 
         //Login vao trang Admin
-        adminLoginPage.enterToEmailTextbox("");
-        adminLoginPage.enterToPasswordTextbox("");
+        adminLoginPage.enterToEmailTextbox(adminEmaillAddress);
+        adminLoginPage.enterToPasswordTextbox(adminPassword);
         adminDashboardPage = adminLoginPage.clickToLoginButton();
+
 
     }
     @Test
     public void Role_02_Admin_Site_To_User_Site() {
+        adminDashboardPage.openPageUrl(driver, this.userUrl);
+        userHomePage = PageGenerator.getUserHomePage(driver);
+
+
 
     }
     @Test
@@ -81,7 +89,6 @@ public class Level_09_Switch_Page_Url extends BaseTest {
     public void afterClass() {
         driver.quit();
     }
-    private String userUrl, adminUrl;
     private WebDriver driver;
     private UserHomePO userHomePage;
     private UserRegisterPO userRegisterPage;
@@ -89,5 +96,5 @@ public class Level_09_Switch_Page_Url extends BaseTest {
     private AdminLoginPO adminLoginPage;
     private AdminDashboardPO adminDashboardPage;
     private String firstName, lastName, day, month, year, emailAddress, companyName, password;
-
+    private String userUrl, adminUrl, adminEmaillAddress, adminPassword;
 }
