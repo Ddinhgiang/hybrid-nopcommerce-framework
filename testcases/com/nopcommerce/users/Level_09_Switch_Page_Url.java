@@ -57,6 +57,22 @@ public class Level_09_Switch_Page_Url extends BaseTest {
     //Testcase
     @Test
     public void Role_01_User_Site_To_Admin_Site() {
+<<<<<<< Updated upstream
+=======
+        userRegisterPage.clickToLogoutLink();
+        userLoginPage = userRegisterPage.openLoginPO();
+        userHomePage = userLoginPage.loginToSystem(emailAddress, password);
+        Assert.assertTrue(userHomePage.isMyAccountLinkDisplayed());
+        userHomePage.openPageUrl(driver, this.adminUrl);
+        //Chua login >> Khoi tao Login
+        adminLoginPage = PageGenerator.getAdminLoginPage(driver);
+
+        //Login vao trang Admin
+        adminLoginPage.enterToEmailTextbox(adminEmaillAddress);
+        adminLoginPage.enterToPasswordTextbox(adminPassword);
+        adminDashboardPage = adminLoginPage.clickToLoginButton();
+
+>>>>>>> Stashed changes
 
     }
     @Test
