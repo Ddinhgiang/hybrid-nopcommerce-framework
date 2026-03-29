@@ -1,12 +1,13 @@
-package pageObjects;
+package pageObjects.user;
 
-import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageObjects.PageGenerator;
 import pageUIs.CustomerInfoPageUI;
 
-public class CustomerInfoPageObject extends BasePage {
+public class UserCustomerInfoPO extends UserSidebarPO {
     private WebDriver driver;
-    public CustomerInfoPageObject(WebDriver driver) {
+    public UserCustomerInfoPO(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 
@@ -34,6 +35,12 @@ public class CustomerInfoPageObject extends BasePage {
         waitForELementVisible(driver, CustomerInfoPageUI.COMPANY_TEXTBOX);
         return getElementAttribute(driver, CustomerInfoPageUI.COMPANY_TEXTBOX, "value");
 
+    }
+
+    public UserAddressPageObject openAddressPage() {
+        waitForELementClickable(driver, CustomerInfoPageUI.ADDRESS_LINK);
+        clickToELement(driver, CustomerInfoPageUI.ADDRESS_LINK);
+        return PageGenerator.getUserAddressPage(driver);
     }
 
 

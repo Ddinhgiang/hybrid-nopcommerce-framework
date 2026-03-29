@@ -1,13 +1,18 @@
-package pageObjects;
+package pageObjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+<<<<<<< Updated upstream
 import pageUIs.RegisterPageUI;
+=======
+import pageObjects.PageGenerator;
+import pageUIs.user.UserRegisterPageUI;
+>>>>>>> Stashed changes
 
-public class RegisterPageObject extends BasePage {
+public class UserRegisterPO extends BasePage {
     private WebDriver driver;
 
-    public RegisterPageObject(WebDriver driver) {
+    public UserRegisterPO(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -66,15 +71,20 @@ public class RegisterPageObject extends BasePage {
         return getElementText(driver, RegisterPageUI.REGISTER_SUCCESS_MESSAGE);
     }
     /**Them**/
-    public void clickToMyAccountLink() {
+    public UserCustomerInfoPO openCustomerInfoPage() {
         waitForELementClickable(driver, RegisterPageUI.MY_ACCOUNT_LINK);
         clickToELement(driver, RegisterPageUI.MY_ACCOUNT_LINK);
+        return new UserCustomerInfoPO(driver);
     }
-
-//    public void clickToLoginLink() {
-//        waitForELementClickable(driver, RegisterPageUI.LOGIN_LINK);
-//        clickToELement(driver, RegisterPageUI.LOGIN_LINK);
-//    }
+    public void clickToLogoutLink() {
+        waitForELementClickable(driver, UserRegisterPageUI.LOGOUT_LINK);
+        clickToELement(driver, UserRegisterPageUI.LOGOUT_LINK);
+    }
+    public UserLoginPO openLoginPO() {
+        waitForELementClickable(driver, UserRegisterPageUI.LOGIN_LINK);
+        clickToELement(driver, UserRegisterPageUI.LOGIN_LINK);
+        return PageGenerator.getUserLoginPage(driver);
+    }
 
 
 

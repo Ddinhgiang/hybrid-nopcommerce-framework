@@ -1,13 +1,13 @@
-package pageObjects;
+package pageObjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 import pageUIs.LoginPageUI;
 
-public class LoginPageObject extends BasePage {
+public class UserLoginPO extends BasePage {
     private WebDriver driver;
 
-    public LoginPageObject(WebDriver driver) {
+    public UserLoginPO(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -25,5 +25,10 @@ public class LoginPageObject extends BasePage {
     public void clickToLoginButton() {
         waitForELementClickable(driver, LoginPageUI.LOGIN_BUTTON);
         clickToELement(driver, LoginPageUI.LOGIN_BUTTON);
+    }
+    public void loginToSystem(String emailAddress, String password) {
+        enterToEmailTextbox(emailAddress);
+        enterToPasswordTextbox(password);
+        clickToLoginButton();
     }
 }

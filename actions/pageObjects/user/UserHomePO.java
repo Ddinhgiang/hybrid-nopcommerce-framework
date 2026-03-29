@@ -1,26 +1,28 @@
-package pageObjects;
+package pageObjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageObjects.PageGenerator;
 import pageUIs.HomePageUI;
 
-public class HomePageObject extends BasePage {
+public class UserHomePO extends BasePage {
 
     private WebDriver driver;
     //Ham khoi tao (Constructor function)
-    public HomePageObject(WebDriver driver) {
+    public UserHomePO(WebDriver driver) {
         this.driver = driver;
     }
 
 
-    public void clickToRegisterLink() {
+    public UserRegisterPO openRegisterPage() {
         waitForELementClickable(driver, HomePageUI.REGISTER_LINK);
         clickToELement(driver, HomePageUI.REGISTER_LINK);
+        return PageGenerator.getUserRegisterPage(driver);
     }
 
-    public void clickToLoginLink() {
-
-    }
+//    public HomePageObject clickToLoginLink() {
+//
+//    }
 
     public boolean isMyAccountLinkDisplayed() {
         waitForELementVisible(driver, HomePageUI.MY_ACCOUNT_LINK);
