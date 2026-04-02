@@ -56,6 +56,8 @@ public class Level_09_Switch_Page_Url extends BaseTest {
     @Test
     public void Role_01_User_Site_To_Admin_Site() {
 //        userLoginPage = userRegisterPage.openLoginPage();
+        userRegisterPage.clickToLogoutLink();
+        userLoginPage = userRegisterPage.openLoginPO();
         userHomePage = userLoginPage.loginToSystem(emailAddress, password);
         Assert.assertTrue(userHomePage.isMyAccountLinkDisplayed());
         userHomePage.openPageUrl(driver, this.adminUrl);
@@ -66,7 +68,6 @@ public class Level_09_Switch_Page_Url extends BaseTest {
         adminLoginPage.enterToEmailTextbox(adminEmaillAddress);
         adminLoginPage.enterToPasswordTextbox(adminPassword);
         adminDashboardPage = adminLoginPage.clickToLoginButton();
-
 
     }
     @Test

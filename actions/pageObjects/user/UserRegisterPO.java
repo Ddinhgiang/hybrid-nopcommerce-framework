@@ -2,6 +2,7 @@ package pageObjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageObjects.PageGenerator;
 import pageUIs.user.UserRegisterPageUI;
 
 public class UserRegisterPO extends BasePage {
@@ -72,10 +73,15 @@ public class UserRegisterPO extends BasePage {
         return new UserCustomerInfoPO(driver);
     }
 
-//    public void clickToLoginLink() {
-//        waitForELementClickable(driver, RegisterPageUI.LOGIN_LINK);
-//        clickToELement(driver, RegisterPageUI.LOGIN_LINK);
-//    }
+    public void clickToLogoutLink() {
+        waitForELementClickable(driver, UserRegisterPageUI.LOGOUT_LINK);
+        clickToELement(driver, UserRegisterPageUI.LOGOUT_LINK);
+    }
+    public UserLoginPO openLoginPO() {
+        waitForELementClickable(driver, UserRegisterPageUI.LOGIN_LINK);
+        clickToELement(driver, UserRegisterPageUI.LOGIN_LINK);
+        return PageGenerator.getUserLoginPage(driver);
+    }
 
 
 
