@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/browserDrivers/browserDrivers.iml" filepath="$PROJECT_DIR$/browserDrivers/browserDrivers.iml" />
       <module fileurl="file://$PROJECT_DIR$/hybrid-nopcommerce-framework.iml" filepath="$PROJECT_DIR$/hybrid-nopcommerce-framework.iml" />
     </modules>
   </component>

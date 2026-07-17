@@ -2,18 +2,18 @@ package com.nopcommerce.users;
 
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.user.UserCustomerInfoPO;
 import pageObjects.user.UserHomePO;
 import pageObjects.user.UserLoginPO;
 import pageObjects.user.UserRegisterPO;
-import java.time.Duration;
 
-public class Level_03_Page_Object extends BaseTest {
+
+public class Level_04_Multiple_Browser extends BaseTest {
    // Declare Variables
     private WebDriver driver;
     private UserHomePO homePage;
@@ -21,14 +21,11 @@ public class Level_03_Page_Object extends BaseTest {
     private UserLoginPO loginPage;
     private UserCustomerInfoPO customerInfoPage;
     private String firstName, lastName, day, month, year, emailAddress, companyName, password;
-
+    @Parameters("browser")
     //Pre-Condition
     @BeforeClass
-    public void beforeClass() {
-        driver = new ChromeDriver();
-        // Mo URL len >> Qua HomePage
-        driver.get("http://localhost:8086/");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    public void beforeClass(String browserName) {
+       driver=getBrowserDriver(browserName);
         //Page duoc sinh ra va bat dau lam nhung action cua page do
         homePage = new UserHomePO(driver);
         firstName = "rei";

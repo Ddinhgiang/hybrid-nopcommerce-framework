@@ -2,58 +2,56 @@ package com.nopcommerce.users;
 
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pageObjects.user.UserAddressPageObject;
 import pageObjects.user.UserCustomerInfoPO;
+import pageObjects.user.UserOrderPO;
+import pageObjects.user.UserRewardPointPO;
 import pageObjects.user.UserHomePO;
 import pageObjects.user.UserLoginPO;
 import pageObjects.user.UserRegisterPO;
-import java.time.Duration;
 
-public class Level_03_Page_Object extends BaseTest {
+
+public class Level_08_Test extends BaseTest {
    // Declare Variables
     private WebDriver driver;
     private UserHomePO homePage;
     private UserRegisterPO registerPage;
     private UserLoginPO loginPage;
     private UserCustomerInfoPO customerInfoPage;
+    private UserAddressPageObject addressPage;
+    private UserOrderPO orderPage;
+    private UserRewardPointPO rewardPointPage;
     private String firstName, lastName, day, month, year, emailAddress, companyName, password;
-
+    @Parameters("browser")
     //Pre-Condition
     @BeforeClass
-    public void beforeClass() {
-        driver = new ChromeDriver();
-        // Mo URL len >> Qua HomePage
-        driver.get("http://localhost:8086/");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    public void beforeClass(String browserDriver) {
+       driver=getBrowserDriver(browserDriver);
+//       driver = new ChromeDriver();
+//       driver.get("http://localhost:8086/");
         //Page duoc sinh ra va bat dau lam nhung action cua page do
         homePage = new UserHomePO(driver);
-        firstName = "rei";
-        lastName = "conan";
+        firstName = "reimmn";
+        lastName = "conanmm";
 //        day = "";
 //        month = "";
 //        year = "";
-        emailAddress = "reiconan" + generateRandomNumber()  + "@gmail.com";
+        emailAddress = "reiconanmm" + generateRandomNumber()  + "@gmail.com";
         companyName = "rei";
         password = "123123";
     }
     //Testcase
     @Test
     public void User_01_Register() {
-        //Action 1
-        homePage.openRegisterPage();
-        //Tu Home Page qua Register Page
-        //Page duoc sinh ra va bat dau lam nhung action cua page do
-        registerPage = new UserRegisterPO(driver);
+        registerPage = homePage.openRegisterPage();
         registerPage.clickToMaleRadio();
         registerPage.enterToFirstNameTextbox(firstName);
         registerPage.enterToLastNameTextbox(lastName);
-//        registerPage.selectDayDropdown(day);
-//        registerPage.selectMonthDropdown(month);
-//        registerPage.selectYearDropdown(year);
         registerPage.enterToEmailTextbox(emailAddress);
         registerPage.enterToCompanyTextbox(companyName);
         registerPage.enterToPasswordTextbox(password);
@@ -61,8 +59,8 @@ public class Level_03_Page_Object extends BaseTest {
         registerPage.clickToRegisterButton();
         Assert.assertEquals(registerPage.getRegisterSuccessMessage(),"Your registration completed");
     }
-    @Test
-    public void User_02_Login() {
+//    @Test
+//    public void User_02_Login() {
 ////        registerPage.clickToLoginLink();
 //        homePage.clickToLoginLink();
 //        //Tu register page qua login page (Actual: home page -> login page)
@@ -77,14 +75,14 @@ public class Level_03_Page_Object extends BaseTest {
 //        //Page do duoc sinh ra va bat dau nhung action cua no
 //        homePage = new HomePageObject(driver);
 //        Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
-    }
+//    }
     @Test
     public void User_03_MyAccount() {
         //Tu Home Page qua Customer Info Page
         //Page duoc sinh ra va bat dau nhung action cua no
 //        homePage.clickToMyAccountLink();
-        registerPage.openCustomerInfoPage();
-        customerInfoPage = new UserCustomerInfoPO(driver);
+        customerInfoPage = registerPage.openCustomerInfoPage();
+
         Assert.assertTrue(customerInfoPage.isGenderMaleSelected());
         Assert.assertEquals(customerInfoPage.getFirstNameTextboxValue(),firstName);
         Assert.assertEquals(customerInfoPage.getLastNameTextboxValue(),lastName);
@@ -93,6 +91,21 @@ public class Level_03_Page_Object extends BaseTest {
 //        Assert.assertEquals(customerInfoPage.getYearDropdownSelectedValue(),year);
         Assert.assertEquals(customerInfoPage.getEmailTextboxValue(),emailAddress);
         Assert.assertEquals(customerInfoPage.getCompanyTextboxValue(),companyName);
+    }
+    @Test
+    public void User_04_Switch_Page() {
+        //CustomerInfo -> Address
+        addressPage = customerInfoPage.openAddressPage();
+        //Address -> RewardPoint
+        rewardPointPage = addressPage.openRewardPointPage();
+        //RewardPoint -> Order
+        orderPage = rewardPointPage.openOrderPage();
+
+        //Order -> Address
+        addressPage = orderPage.openAddressPage();
+
+        //Address -> Customer Info
+        customerInfoPage = addressPage.openCustomerInfoPage();
 
 
     }

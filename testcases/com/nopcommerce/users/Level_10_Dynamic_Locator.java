@@ -2,33 +2,31 @@ package com.nopcommerce.users;
 
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.user.UserCustomerInfoPO;
-import pageObjects.user.UserHomePO;
-import pageObjects.user.UserLoginPO;
-import pageObjects.user.UserRegisterPO;
-import java.time.Duration;
+import pageObjects.PageGenerator;
+import pageObjects.user.*;
 
-public class Level_03_Page_Object extends BaseTest {
+
+public class Level_10_Dynamic_Locator extends BaseTest {
    // Declare Variables
     private WebDriver driver;
     private UserHomePO homePage;
     private UserRegisterPO registerPage;
     private UserLoginPO loginPage;
     private UserCustomerInfoPO customerInfoPage;
+    private UserAddressPageObject addressPage;
+    private UserOrderPO orderPage;
+    private UserRewardPointPO rewardPointPage;
     private String firstName, lastName, day, month, year, emailAddress, companyName, password;
-
+    @Parameters("browser")
     //Pre-Condition
     @BeforeClass
-    public void beforeClass() {
-        driver = new ChromeDriver();
-        // Mo URL len >> Qua HomePage
-        driver.get("http://localhost:8086/");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    public void beforeClass(String browserName) {
+       driver=getBrowserDriver(browserName);
         //Page duoc sinh ra va bat dau lam nhung action cua page do
         homePage = new UserHomePO(driver);
         firstName = "rei";
@@ -44,10 +42,7 @@ public class Level_03_Page_Object extends BaseTest {
     @Test
     public void User_01_Register() {
         //Action 1
-        homePage.openRegisterPage();
-        //Tu Home Page qua Register Page
-        //Page duoc sinh ra va bat dau lam nhung action cua page do
-        registerPage = new UserRegisterPO(driver);
+        registerPage = homePage.openRegisterPage();
         registerPage.clickToMaleRadio();
         registerPage.enterToFirstNameTextbox(firstName);
         registerPage.enterToLastNameTextbox(lastName);
@@ -83,8 +78,8 @@ public class Level_03_Page_Object extends BaseTest {
         //Tu Home Page qua Customer Info Page
         //Page duoc sinh ra va bat dau nhung action cua no
 //        homePage.clickToMyAccountLink();
-        registerPage.openCustomerInfoPage();
-        customerInfoPage = new UserCustomerInfoPO(driver);
+        customerInfoPage = registerPage.openCustomerInfoPage();
+
         Assert.assertTrue(customerInfoPage.isGenderMaleSelected());
         Assert.assertEquals(customerInfoPage.getFirstNameTextboxValue(),firstName);
         Assert.assertEquals(customerInfoPage.getLastNameTextboxValue(),lastName);
@@ -93,7 +88,47 @@ public class Level_03_Page_Object extends BaseTest {
 //        Assert.assertEquals(customerInfoPage.getYearDropdownSelectedValue(),year);
         Assert.assertEquals(customerInfoPage.getEmailTextboxValue(),emailAddress);
         Assert.assertEquals(customerInfoPage.getCompanyTextboxValue(),companyName);
+    }
+    @Test
+    public void User_04_Dynamic_Page() {
+        //CustomerInfo -> Address
+        addressPage = (UserAddressPageObject) customerInfoPage.openSidebarLinkByPageName("Addresses");
+        //Address -> RewardPoint
+        rewardPointPage = (UserRewardPointPO) addressPage.openSidebarLinkByPageName("Reward points");
+        //RewardPoint -> Order
+        orderPage = (UserOrderPO) rewardPointPage.openSidebarLinkByPageName("Orders");
 
+        //Order -> Address
+        addressPage = (UserAddressPageObject) orderPage.openSidebarLinkByPageName("Addresses");
+
+        //Address -> Customer Info
+        customerInfoPage = (UserCustomerInfoPO) addressPage.openSidebarLinkByPageName("Customer info");
+        rewardPointPage = (UserRewardPointPO) customerInfoPage.openSidebarLinkByPageName("Reward points");
+        addressPage = (UserAddressPageObject) rewardPointPage.openSidebarLinkByPageName("Addresses");
+
+    }
+
+    //Trong truong hop nhieu Page
+    public void User_05_Dynamic_Page() {
+        //CustomerInfo -> Address
+        addressPage.openSidebarLinkByPageNames("Reward points");
+        rewardPointPage = PageGenerator.getUserRewardPage(driver);
+                //Address -> RewardPoint
+        rewardPointPage.openSidebarLinkByPageNames("Orders");
+        orderPage = PageGenerator.getUserOrderPage(driver);
+
+        //Order -> Address
+        orderPage.openSidebarLinkByPageNames("Addresses");
+        addressPage = PageGenerator.getUserAddressPage(driver);
+
+        //Address -> Customer Info
+        addressPage.openSidebarLinkByPageNames("Customer info");
+        customerInfoPage = PageGenerator.getUserCustomerPage(driver);
+        customerInfoPage.openSidebarLinkByPageNames("Reward points");
+        rewardPointPage = PageGenerator.getUserRewardPage(driver);
+
+        rewardPointPage.openSidebarLinkByPageNames("Addresses");
+        addressPage = PageGenerator.getUserAddressPage(driver);
 
     }
     @AfterClass
