@@ -7,16 +7,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.*;
-import pageObjects.admin.AdminDashboardPO;
-import pageObjects.admin.AdminLoginPO;
-import pageObjects.user.UserAddressPageObject;
-import pageObjects.user.UserCustomerInfoPO;
-import pageObjects.user.UserOrderPO;
-import pageObjects.user.UserRewardPointPO;
-import pageObjects.user.UserHomePO;
-import pageObjects.user.UserLoginPO;
-import pageObjects.user.UserRegisterPO;
+import pageObjects.nopCommerce.PageGenerator;
+import pageObjects.nopCommerce.admin.AdminDashboardPO;
+import pageObjects.nopCommerce.admin.AdminLoginPO;
+import pageObjects.nopCommerce.user.UserHomePO;
+import pageObjects.nopCommerce.user.UserLoginPO;
+import pageObjects.nopCommerce.user.UserRegisterPO;
 
 
 public class Level_09_Switch_Page_Url extends BaseTest {

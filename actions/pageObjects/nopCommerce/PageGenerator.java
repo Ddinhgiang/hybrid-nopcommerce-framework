@@ -1,15 +1,15 @@
-package pageObjects;
+package pageObjects.nopCommerce;
 
 import org.openqa.selenium.WebDriver;
-import pageObjects.admin.AdminDashboardPO;
-import pageObjects.admin.AdminLoginPO;
-import pageObjects.user.UserAddressPageObject;
-import pageObjects.user.UserCustomerInfoPO;
-import pageObjects.user.UserOrderPO;
-import pageObjects.user.UserRewardPointPO;
-import pageObjects.user.UserHomePO;
-import pageObjects.user.UserLoginPO;
-import pageObjects.user.UserRegisterPO;
+import pageObjects.nopCommerce.admin.AdminDashboardPO;
+import pageObjects.nopCommerce.admin.AdminLoginPO;
+import pageObjects.nopCommerce.user.UserAddressPageObject;
+import pageObjects.nopCommerce.user.UserCustomerInfoPO;
+import pageObjects.nopCommerce.user.UserOrderPO;
+import pageObjects.nopCommerce.user.UserRewardPointPO;
+import pageObjects.nopCommerce.user.UserHomePO;
+import pageObjects.nopCommerce.user.UserLoginPO;
+import pageObjects.nopCommerce.user.UserRegisterPO;
 
 public class PageGenerator{
     public static UserHomePO getUserHomePage(WebDriver driver) {
