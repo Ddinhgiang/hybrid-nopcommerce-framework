@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.*;
-import pageUIs.*;
+//import pageObjects.*;
+//import pageUIs.*;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -156,12 +156,13 @@ public class BasePage {
 //        driver.findElement(By.xpath(locator)).click();
         getElement(driver, castParameter(locator, restParameter)).click();
     }
-    public void sendKeyToElement(WebDriver driver, String locator, String keyToSend) {
+    public void sendKeyToElement(WebDriver driver, String locator, CharSequence keyToSend) {
         getElement(driver, locator).clear();
         getElement(driver, locator).sendKeys(keyToSend);
     }
-    public void sendKeyToElement(WebDriver driver, String locator, String keyToSend, String restParameter) {
-        getElement(driver, castParameter(locator, restParameter)).clear();
+    //DA TU SUA CHO NAY< CAN DE Y
+    public void sendKeyToElement(WebDriver driver, String locator, CharSequence keyToSend, String restParameter) {
+        //getElement(driver, castParameter(locator, restParameter)).clear();
         getElement(driver, castParameter(locator, restParameter)).sendKeys(keyToSend);
     }
     public void selectItemInDropdown(WebDriver driver, String locator, String textItem) {
@@ -240,7 +241,7 @@ public class BasePage {
     public boolean isElementDisplayed(WebDriver driver, String locator) {
         return getElement(driver, locator).isDisplayed();
     }
-    public boolean isElementDisplayed(WebDriver driver, String locator, String restParameter) {
+    public boolean isElementDisplayed(WebDriver driver, String locator, String ...restParameter) {
         return getElement(driver, castParameter(locator, restParameter)).isDisplayed();
     }
     public boolean isElementEnabled(WebDriver driver, String locator) {
@@ -347,7 +348,7 @@ public class BasePage {
     public void waitForELementVisible(WebDriver driver, String locator) {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
     }
-    public void waitForELementVisible(WebDriver driver, String locator, String restParameter) {
+    public void waitForELementVisible(WebDriver driver, String locator, String ...restParameter) {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfElementLocated(getByLocator(castParameter(locator, restParameter))));
     }
     public void waitForELementSelected(WebDriver driver, String locator) {
