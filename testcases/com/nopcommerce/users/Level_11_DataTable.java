@@ -34,21 +34,47 @@ public class Level_11_DataTable extends BaseTest {
 //     homePage.openPageByNumber("5");
 //     Assert.assertTrue(homePage.isPageActivedByNumber("5"));
 //    }
+//    @Test
+//    public void Table_02_Search() {
+//     homePage.enterToHeaderTextboxByName("Country", "Afghanistan");
+//     Assert.assertTrue(homePage.isPageInforDisplayed("384187","Afghanistan","407124","791312"));
+//     homePage.refreshCurrentPage(driver);
+//     homePage.sleepInSecond(3);
+//
+//     homePage.enterToHeaderTextboxByName("Females", "21050");
+//     homePage.refreshCurrentPage(driver);
+//     homePage.sleepInSecond(3);
+//
+//
+//    }
+//    @Test
+//    public void Table_03_Action() {
+//        homePage.enterToHeaderTextboxByName("Country", "Afghanistan");
+//        homePage.sleepInSecond(3);
+//        homePage.refreshCurrentPage(driver);
+//        homePage.clickToActionByCountryName("Afghanistan","remove");
+//        Assert.assertFalse(homePage.isPageInforDisplayed("384187","Afghanistan","407124","791312"));
+//
+//        homePage.refreshCurrentPage(driver);
+//        homePage.enterToHeaderTextboxByName("Country", "Armenia");
+//        homePage.sleepInSecond(3);
+//        homePage.clickToActionByCountryName("Armenia","edit");
+//
+
+//    }
+
     @Test
-    public void Table_02_Search() {
-     homePage.enterToHeaderTextboxByName("Country", "Afghanistan");
-     Assert.assertTrue(homePage.isPageInforDisplayed("384187","Afghanistan","407124","791312"));
-     homePage.refreshCurrentPage(driver);
-     homePage.sleepInSecond(3);
-
-     homePage.enterToHeaderTextboxByName("Females", "21050");
-     homePage.refreshCurrentPage(driver);
-     homePage.sleepInSecond(3);
-
-
+    public void Table_04_Index() {
+        homePage.openPageUrl(driver, "https://www.jqueryscript.net/demo/jQuery-Dynamic-Data-Grid-Plugin-appendGrid/");
+        homePage.clickLoadDataButton();
+        homePage.enterToTextBoxByColumnNameAndRowIndex("Company", "6", "Russia");
+        homePage.sleepInSecond(3);
+        homePage.selectToDropdownByColumnNameAndRowIndex("Country", "3", "Hong Kong");
+        homePage.sleepInSecond(3);
+        homePage.checkToCheckboxByColumnNameAndRowIndex("NPO?", "3");
+        homePage.sleepInSecond(3);
     }
-
-
+    //49.50
 
  @AfterClass
     public void afterClass() {

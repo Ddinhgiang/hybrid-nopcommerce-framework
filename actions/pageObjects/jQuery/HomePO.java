@@ -36,4 +36,37 @@ public class HomePO extends BasePage {
         waitForELementVisible(driver, HomePageUI.DYNAMIC_PAGE_INFO, female, country, male, total);
         return isElementDisplayed(driver, HomePageUI.DYNAMIC_PAGE_INFO, female, country, male, total);
     }
+
+    public void clickToActionByCountryName(String countryName, String actionName) {
+        waitForELementClickable(driver, HomePageUI.DYNAMIC_ACTION_BY_COUNTRY_NAME, countryName, actionName);
+    }
+
+    public void clickLoadDataButton() {
+        waitForELementClickable(driver, HomePageUI.LOAD_DATA_BUTTON);
+        clickToELement(driver, HomePageUI.LOAD_DATA_BUTTON);
+
+    }
+
+    public void enterToTextBoxByColumnNameAndRowIndex(String columnName, String rowIndex, String valueToSendKey) {
+        waitForELementVisible(driver, HomePageUI.DYNAMIC_COLUMN_INDEX_BY_COLUMN_NAME, columnName);
+        int columnIndex = getListElementNumber(driver, HomePageUI.DYNAMIC_COLUMN_INDEX_BY_COLUMN_NAME, columnName) + 1;
+        waitForELementVisible(driver, HomePageUI.DYNAMIC_TEXTBOX_BY_ROW_INDEX_AND_COLUMN_INDEX, rowIndex, String.valueOf(columnIndex));
+        sendKeyToElement(driver, HomePageUI.DYNAMIC_TEXTBOX_BY_ROW_INDEX_AND_COLUMN_INDEX, valueToSendKey, rowIndex, String.valueOf(columnIndex));
+        //30.30
+    }
+
+    public void selectToDropdownByColumnNameAndRowIndex(String columnName, String rowIndex, String valueToSendKey) {
+        waitForELementVisible(driver, HomePageUI.DYNAMIC_COLUMN_INDEX_BY_COLUMN_NAME, columnName);
+        int columnIndex = getListElementNumber(driver, HomePageUI.DYNAMIC_COLUMN_INDEX_BY_COLUMN_NAME, columnName) + 1;
+        waitForELementClickable(driver, HomePageUI.DYNAMIC_DROPDOWN_BY_ROW_INDEX_AND_COLUMN_INDEX, rowIndex, String.valueOf(columnIndex));
+        selectItemInDropdown(driver, HomePageUI.DYNAMIC_DROPDOWN_BY_ROW_INDEX_AND_COLUMN_INDEX, valueToSendKey, rowIndex, String.valueOf(columnIndex));
+    }
+
+    public void checkToCheckboxByColumnNameAndRowIndex(String columnName, String rowIndex) {
+        waitForELementVisible(driver, HomePageUI.DYNAMIC_COLUMN_INDEX_BY_COLUMN_NAME, columnName);
+        int columnIndex = getListElementNumber(driver, HomePageUI.DYNAMIC_COLUMN_INDEX_BY_COLUMN_NAME, columnName) + 1;
+        waitForELementClickable(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_INDEX_AND_COLUMN_INDEX, rowIndex, String.valueOf(columnIndex));
+        checkToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_INDEX_AND_COLUMN_INDEX, rowIndex, String.valueOf(columnIndex));
+
+    }
 }
